@@ -1,0 +1,8 @@
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Service\bin\Debug\netcoreapp3.1\TimeApp.Service.deps.json
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Service\bin\Debug\netcoreapp3.1\TimeApp.Service.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Service\bin\Debug\netcoreapp3.1\TimeApp.Service.pdb
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Service\obj\Debug\netcoreapp3.1\TimeApp.Service.csprojAssemblyReference.cache
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Service\obj\Debug\netcoreapp3.1\TimeApp.Service.AssemblyInfoInputs.cache
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Service\obj\Debug\netcoreapp3.1\TimeApp.Service.AssemblyInfo.cs
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Service\obj\Debug\netcoreapp3.1\TimeApp.Service.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Service\obj\Debug\netcoreapp3.1\TimeApp.Service.pdb

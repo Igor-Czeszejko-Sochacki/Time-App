@@ -81,9 +81,6 @@
             "projectReferences": {
               "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Model\\TimeApp.Model.csproj": {
                 "projectPath": "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Model\\TimeApp.Model.csproj"
-              },
-              "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Service\\TimeApp.Service.csproj": {
-                "projectPath": "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Service\\TimeApp.Service.csproj"
               }
             }
           }
@@ -166,7 +163,14 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Model\\TimeApp.Model.csproj": {
+                "projectPath": "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Model\\TimeApp.Model.csproj"
+              },
+              "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Repository\\TimeApp.Repository.csproj": {
+                "projectPath": "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Repository\\TimeApp.Repository.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -188,6 +192,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

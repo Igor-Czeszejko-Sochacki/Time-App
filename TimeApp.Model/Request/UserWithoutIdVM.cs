@@ -1,15 +1,16 @@
 ﻿using System;
-using TimeApp.Model.DbModels;
+using System.Collections.Generic;
+using System.Text;
 
-namespace TimeApp.Model
+namespace TimeApp.Model.Request
 {
-    public class User : Entity
+    public class UserWithoutIdVM
     {
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Status { get; set; }  
-        public bool IsActive { get; set; }
+        public string Status { get; set; }
+
     }
 }

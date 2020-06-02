@@ -7,9 +7,7 @@ C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Repository\bin\Debug\netcoreapp3.
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Repository\bin\Debug\netcoreapp3.1\TimeApp.Repository.runtimeconfig.dev.json
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Repository\bin\Debug\netcoreapp3.1\TimeApp.Repository.pdb
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Repository\bin\Debug\netcoreapp3.1\TimeApp.Model.dll
-C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Repository\bin\Debug\netcoreapp3.1\TimeApp.Service.dll
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Repository\bin\Debug\netcoreapp3.1\TimeApp.Model.pdb
-C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Repository\bin\Debug\netcoreapp3.1\TimeApp.Service.pdb
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Repository\obj\Debug\netcoreapp3.1\TimeApp.Repository.csproj.CopyComplete
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Repository\obj\Debug\netcoreapp3.1\TimeApp.Repository.dll
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp.Repository\obj\Debug\netcoreapp3.1\TimeApp.Repository.pdb

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using TimeApp.Repository;
 using Microsoft.EntityFrameworkCore.Design;
+using TimeApp.Service;
 
 namespace TimeApp
 {
@@ -30,7 +31,7 @@ namespace TimeApp
         public void ConfigureServices(IServiceCollection services)
         {
            // services.AddScoped<IKanbanTaskService, KanbanTaskService>();
-          //  services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

@@ -2593,16 +2593,6 @@
         "runtime": {
           "bin/placeholder/TimeApp.Model.dll": {}
         }
-      },
-      "TimeApp.Service/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/TimeApp.Service.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TimeApp.Service.dll": {}
-        }
       }
     }
   },
@@ -8432,11 +8422,6 @@
       "type": "project",
       "path": "../TimeApp.Model/TimeApp.Model.csproj",
       "msbuildProject": "../TimeApp.Model/TimeApp.Model.csproj"
-    },
-    "TimeApp.Service/1.0.0": {
-      "type": "project",
-      "path": "../TimeApp.Service/TimeApp.Service.csproj",
-      "msbuildProject": "../TimeApp.Service/TimeApp.Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -8446,8 +8431,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.4",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.3",
       "Swashbuckle.AspNetCore >= 5.4.1",
-      "TimeApp.Model >= 1.0.0",
-      "TimeApp.Service >= 1.0.0"
+      "TimeApp.Model >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -8478,9 +8462,6 @@
           "projectReferences": {
             "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Model\\TimeApp.Model.csproj": {
               "projectPath": "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Model\\TimeApp.Model.csproj"
-            },
-            "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Service\\TimeApp.Service.csproj": {
-              "projectPath": "C:\\Users\\Igor\\Desktop\\Fakultet\\TimeApp\\TimeApp.Service\\TimeApp.Service.csproj"
             }
           }
         }

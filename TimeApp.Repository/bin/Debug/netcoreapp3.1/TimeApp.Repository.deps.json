@@ -13,8 +13,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "3.1.4",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.3",
           "Swashbuckle.AspNetCore": "5.4.1",
-          "TimeApp.Model": "1.0.0",
-          "TimeApp.Service": "1.0.0"
+          "TimeApp.Model": "1.0.0"
         },
         "runtime": {
           "TimeApp.Repository.dll": {}
@@ -1761,11 +1760,6 @@
         "runtime": {
           "TimeApp.Model.dll": {}
         }
-      },
-      "TimeApp.Service/1.0.0": {
-        "runtime": {
-          "TimeApp.Service.dll": {}
-        }
       }
     }
   },
@@ -2889,11 +2883,6 @@
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
     "TimeApp.Model/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "TimeApp.Service/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

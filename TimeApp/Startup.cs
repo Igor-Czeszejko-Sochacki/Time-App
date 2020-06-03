@@ -30,9 +30,16 @@ namespace TimeApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           // services.AddScoped<IKanbanTaskService, KanbanTaskService>();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("LeaderPolicy", policy => policy.RequireRole("Leader"));
+                options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+            });
+            // services.AddScoped<IKanbanTaskService, KanbanTaskService>();
             services.AddScoped<IUserService, UserService>();
-
+            services.AddScoped<IRaportService, RaportService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();

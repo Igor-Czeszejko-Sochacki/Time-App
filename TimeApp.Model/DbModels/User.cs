@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TimeApp.Model.DbModels;
 
 namespace TimeApp.Model
@@ -11,5 +12,6 @@ namespace TimeApp.Model
         public string Password { get; set; }
         public string Status { get; set; }  
         public bool IsActive { get; set; }
+        public List<Raports> Raports { get; set; }
     }
 }

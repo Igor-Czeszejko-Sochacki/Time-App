@@ -12,6 +12,7 @@ namespace TimeApp.Model
         public string Password { get; set; }
         public string Status { get; set; }  
         public bool IsActive { get; set; }
+        public string Token { get; set; }
         public List<Raports> Raports { get; set; }
     }
 }

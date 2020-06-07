@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeApp.API", "TimeApp\TimeApp.API.csproj", "{10C6FD92-DB55-4413-AF94-4AA46457C7AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeApp.API", "TimeApp\TimeApp.API.csproj", "{10C6FD92-DB55-4413-AF94-4AA46457C7AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeApp.Repository", "TimeApp.Repository\TimeApp.Repository.csproj", "{4EAC1603-5ECD-4E63-BF69-5C3F0753022D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeApp.Repository", "TimeApp.Repository\TimeApp.Repository.csproj", "{4EAC1603-5ECD-4E63-BF69-5C3F0753022D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeApp.Model", "TimeApp.Model\TimeApp.Model.csproj", "{43078282-FF2B-446C-8649-EEC0ED021653}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeApp.Model", "TimeApp.Model\TimeApp.Model.csproj", "{43078282-FF2B-446C-8649-EEC0ED021653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeApp.Service", "TimeApp.Service\TimeApp.Service.csproj", "{55399BCC-0063-4BE6-A8F6-5D8995F535DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeApp.Service", "TimeApp.Service\TimeApp.Service.csproj", "{55399BCC-0063-4BE6-A8F6-5D8995F535DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

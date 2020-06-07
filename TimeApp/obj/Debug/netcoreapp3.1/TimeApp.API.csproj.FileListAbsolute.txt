@@ -132,5 +132,17 @@ C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\obj\Debug\netcoreapp3.1\staticweb
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\obj\Debug\netcoreapp3.1\TimeApp.API.dll
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\obj\Debug\netcoreapp3.1\TimeApp.API.pdb
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\obj\Debug\netcoreapp3.1\TimeApp.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Igor\Desktop\Fakultet\TimeApp\TimeApp\obj\Debug\netcoreapp3.1\TimeApp.API.MvcApplicationPartsAssemblyInfo.cache

@@ -14,7 +14,7 @@ namespace TimeApp.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   // [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -49,7 +49,6 @@ namespace TimeApp.Controllers
                 return BadRequest("No users to show");
             return Ok(userList);
         }
-        //[Authorize]
         [HttpPatch("PatchActiveStatus")]
         public async Task<IActionResult> PatchActiveStatus(int userId, bool activeStatus)
         {

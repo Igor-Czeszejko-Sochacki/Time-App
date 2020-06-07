@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TimeApp.Model.Request;
 using TimeApp.Service;
 
 namespace TimeApp.API.Controllers
@@ -50,9 +51,73 @@ namespace TimeApp.API.Controllers
         {
             var raportList = await _raportService.GetAllRaports();
             if (raportList == null)
-                return BadRequest("No users to show");
+                return BadRequest("No raports to show");
             return Ok(raportList);
         }
 
+
+        [HttpGet("GetCurrentUserRaports")]
+        public async Task<IActionResult> GetCurrentUserRaports(int userId)
+        {
+            var raportList = await _raportService.GetCurrentUserRaports(userId);
+            if (raportList == null)
+                return BadRequest("User has no raports");
+            return Ok(raportList);
+        }
+
+        [HttpPost("AddProject")]
+        public async Task<IActionResult> AddProject(ProjectVM projectVM)
+        {
+            var result = await _raportService.AddProject(projectVM);
+            if (result.Response != null)
+                return BadRequest(result);
+            return Ok("Project was added");
+        }
+
+        [HttpPatch("PatchProject")]
+        public async Task<IActionResult> PatchProject(int projectId, ProjectVM projectVM)
+        {
+            var result = await _raportService.PatchProject(projectId,projectVM);
+            if (result.Response != null)
+                return BadRequest(result);
+            return Ok("Project was patched");
+        }
+
+        [HttpDelete("DeleteProject")]
+        public async Task<IActionResult> DeleteProject(int projectId)
+        {
+            var result = await _raportService.DeleteProject(projectId);
+            if (result.Response != null)
+                return BadRequest(result);
+            return Ok("Project was deleted");
+        }
+
+
+        [HttpPost("AddWeek")]
+        public async Task<IActionResult> AddWeek(WeekVM weekVm)
+        {
+            var result = await _raportService.AddWeek(weekVm);
+            if (result.Response != null)
+                return BadRequest(result);
+            return Ok("Week was added");
+        }
+
+        [HttpPatch("PatchWeek")]
+        public async Task<IActionResult> PatchWeek(int weekId, WeekVM weekVm)
+        {
+            var result = await _raportService.PatchWeek(weekId, weekVm);
+            if (result.Response != null)
+                return BadRequest(result);
+            return Ok("Week was patched");
+        }
+
+        [HttpDelete("DeleteWeek")]
+        public async Task<IActionResult> DeleteWeek(int weekId)
+        {
+            var result = await _raportService.DeleteWeek(weekId);
+            if (result.Response != null)
+                return BadRequest(result);
+            return Ok("Week was deleted");
+        }
     }
 }

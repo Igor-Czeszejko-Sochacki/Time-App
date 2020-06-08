@@ -16,9 +16,11 @@ namespace TimeApp.Service
         Task<List<Raports>> GetAllRaports();
         Task<List<Raports>> GetCurrentUserRaports(int userId);
         Task<ResultDTO> AddProject(ProjectVM projectVM);
+        Task<List<Project>> GetAllProjects();
         Task<ResultDTO> PatchProject(int projectId, ProjectVM projectVM);
         Task<ResultDTO> DeleteProject(int projectId);
         Task<ResultDTO> AddWeek(WeekVM weekVM);
+        Task<List<Week>> GetAllWeeks();
         Task<ResultDTO> PatchWeek(int weekId, WeekVM weekVM);
         Task<ResultDTO> DeleteWeek(int weekId);
 

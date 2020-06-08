@@ -74,6 +74,15 @@ namespace TimeApp.API.Controllers
             return Ok("Project was added");
         }
 
+        [HttpGet("GetAllProjects")]
+        public async Task<IActionResult> GetAllProjects()
+        {
+            var projectList = await _raportService.GetAllProjects();
+            if (projectList == null)
+                return BadRequest("No projects to show");
+            return Ok(projectList);
+        }
+
         [HttpPatch("PatchProject")]
         public async Task<IActionResult> PatchProject(int projectId, ProjectVM projectVM)
         {
@@ -100,6 +109,15 @@ namespace TimeApp.API.Controllers
             if (result.Response != null)
                 return BadRequest(result);
             return Ok("Week was added");
+        }
+
+        [HttpGet("GetAllWeeks")]
+        public async Task<IActionResult> GetAllWeeks()
+        {
+            var weekList = await _raportService.GetAllWeeks();
+            if (weekList == null)
+                return BadRequest("No weeks to show");
+            return Ok(weekList);
         }
 
         [HttpPatch("PatchWeek")]

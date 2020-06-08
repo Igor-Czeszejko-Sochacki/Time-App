@@ -119,6 +119,13 @@ namespace TimeApp.Service
                     WorkedHours = projectVM.WorkedHours,
                     WeekId = projectVM.WeekId
                 });
+                var week = await _weekrepo.GetSingleEntity(x => x.Id == projectVM.WeekId);
+                week.WorkedHours = week.WorkedHours + projectVM.WorkedHours;
+                var raport = await _raportrepo.GetSingleEntity(x => x.Id == week.RaportId);
+                raport.WorkedHours = raport.WorkedHours + projectVM.WorkedHours;
+                await _raportrepo.Patch(raport); 
+                await _weekrepo.Patch(week);
+                
             }
             catch (Exception e)
             {
@@ -126,6 +133,12 @@ namespace TimeApp.Service
                 return result;
             }
             return result;
+        }
+
+        public async Task<List<Project>> GetAllProjects()
+        {
+            var projectList = await _projectrepo.GetAll();
+            return projectList;
         }
 
         public async Task<ResultDTO> PatchProject(int projectId, ProjectVM projectVM)
@@ -137,14 +150,21 @@ namespace TimeApp.Service
             try
             {
                 var project = await _projectrepo.GetSingleEntity(x => x.Id == projectId);
+                var hours = project.WorkedHours;
                 if (project == null)
                     result.Response = "Project not found";
                 if (projectVM.Name != null)
                     project.Name = projectVM.Name;
                 if (projectVM.WorkedHours != null)
                     project.WorkedHours = projectVM.WorkedHours;
-
                 await _projectrepo.Patch(project);
+
+                var week = await _weekrepo.GetSingleEntity(x => x.Id == projectVM.WeekId);
+                week.WorkedHours = week.WorkedHours - hours +  projectVM.WorkedHours;
+                var raport = await _raportrepo.GetSingleEntity(x => x.Id == week.RaportId);
+                raport.WorkedHours = raport.WorkedHours - hours + projectVM.WorkedHours;
+                await _raportrepo.Patch(raport);
+                await _weekrepo.Patch(week);
             }
             catch (Exception e)
             {
@@ -200,6 +220,11 @@ namespace TimeApp.Service
             return result;
         }
 
+        public async Task<List<Week>> GetAllWeeks()
+        {
+            var weekList = await _weekrepo.GetAll();
+            return weekList;
+        }
         public async Task<ResultDTO> PatchWeek(int weekId, WeekVM weekVM)
         { 
             var result = new ResultDTO()

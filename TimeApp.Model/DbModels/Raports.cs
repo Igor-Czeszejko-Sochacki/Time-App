@@ -6,6 +6,7 @@ namespace TimeApp.Model.DbModels
 {
     public class Raports : Entity
     {
+        public string Month { get; set; }
         public int HoursInMonth { get; set; } = 120;
         public int WorkedHours { get; set; } = 0;
         public bool IsClosed { get; set; } = false;

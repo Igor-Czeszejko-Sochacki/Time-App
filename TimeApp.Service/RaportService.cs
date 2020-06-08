@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using TimeApp.Model;
 using TimeApp.Model.DbModels;
 using TimeApp.Model.Request;
 using TimeApp.Model.Response;
@@ -14,12 +15,14 @@ namespace TimeApp.Service
         private readonly IRepository<Raports> _raportrepo;
         private readonly IRepository<Project> _projectrepo;
         private readonly IRepository<Week> _weekrepo;
+        private readonly IRepository<User> _userrepo;
 
-        public RaportService(IRepository<Raports> raportrepo, IRepository<Project> projectrepo, IRepository<Week> weekrepo)
+        public RaportService(IRepository<Raports> raportrepo, IRepository<Project> projectrepo, IRepository<Week> weekrepo, IRepository<User> userrepo)
         {
             _raportrepo = raportrepo;
             _projectrepo = projectrepo;
             _weekrepo = weekrepo;
+            _userrepo = userrepo;
     }
         public async Task<ResultDTO> AddRaport(int userId)
         {
@@ -92,17 +95,73 @@ namespace TimeApp.Service
             return raportsList;
         }
 
-        public async Task<List<Raports>> GetCurrentUserRaports(int userId)
+        public async Task<RaportListDTO> GetCurrentUserRaports(int userId)
         {
             var raportsList = await _raportrepo.GetAll();
             var raportList = new List<Raports>();
-
+            var finalRaportList = new List<RaportDTO>();
+            var projectList = await _projectrepo.GetAll();
+            var weekList = await _weekrepo.GetAll();
+            var user = await _userrepo.GetSingleEntity(x => x.Id == userId);
+            var separator = " ";
+            string name = string.Concat(user.Name, separator);
+            string finalName = string.Concat(name, user.Surname);
+            
             foreach(Raports raport in raportsList)
             {
                 if (raport.UserId == userId)
                     raportList.Add(raport);
             }
-            return raportList;
+
+
+            foreach(Raports raport in raportList)
+            {
+                var finalWeekList = new List<WeekDTO>();
+                foreach (Week week in weekList)
+                {
+                    if (week.RaportId == raport.Id)
+                    {
+                        var finalProjectList = new List<ProjectDTO>();
+                        foreach (Project project in projectList)
+                        {
+                            if (project.WeekId == week.Id)
+                            {
+                                finalProjectList.Add(new ProjectDTO
+                                {
+                                    Name = project.Name,
+                                    WorkedHours = project.WorkedHours
+                                });
+                            }
+                        }
+                        finalWeekList.Add(new WeekDTO
+                        {
+                            WeekNumber = week.WeekNumber,
+                            WorkedHours = week.WorkedHours,
+                            HoursInWeek = week.HoursInWeek,
+                            Projects = finalProjectList 
+                        });
+
+                    }
+                }
+                var raportDTO = new RaportDTO()
+                {
+                    Id = raport.Id,
+                    Email = user.Email,
+                    User = finalName,
+                    Month = raport.Month,
+                    HoursInMonth = raport.HoursInMonth,
+                    WorkedHours = raport.WorkedHours,
+                    WeekList = finalWeekList,
+                    IsClosed = raport.IsClosed,
+                    IsAccepted = raport.IsAccepted
+                };
+                finalRaportList.Add(raportDTO);
+            }
+            var final = new RaportListDTO()
+            {
+                RaportList = finalRaportList
+            };
+            return final;
         }
 
         public async Task<ResultDTO> AddProject(ProjectVM projectVM)

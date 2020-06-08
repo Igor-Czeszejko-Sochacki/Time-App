@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace TimeApp.Model.DbModels
 {
@@ -11,6 +12,7 @@ namespace TimeApp.Model.DbModels
         public int WorkedHours { get; set; }
         public List<Project> Projects { get; set; }
         public int RaportId { get; set; }
+        [JsonIgnore]
         public Raports Raport { get; set; }
     }
 }

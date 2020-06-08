@@ -14,7 +14,7 @@ namespace TimeApp.Service
         Task<ResultDTO> PatchClosedStatus(int raportId, bool closedStatus);
         Task<ResultDTO> PatchAcceptedStatus(int raportId, bool acceptedStatus);
         Task<List<Raports>> GetAllRaports();
-        Task<List<Raports>> GetCurrentUserRaports(int userId);
+        Task<RaportListDTO> GetCurrentUserRaports(int userId);
         Task<ResultDTO> AddProject(ProjectVM projectVM);
         Task<List<Project>> GetAllProjects();
         Task<ResultDTO> PatchProject(int projectId, ProjectVM projectVM);

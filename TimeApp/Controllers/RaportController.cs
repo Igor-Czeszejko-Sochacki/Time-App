@@ -20,9 +20,9 @@ namespace TimeApp.API.Controllers
         }
 
         [HttpPost("AddRaport")]
-        public async Task<IActionResult> AddRaport(int userId)
+        public async Task<IActionResult> AddRaport(int userId, string monthName)
         {
-            var result = await _raportService.AddRaport(userId);
+            var result = await _raportService.AddRaport(userId,monthName);
             if (result.Response != null)
                 return BadRequest(result);
             return Ok("Raport was added");

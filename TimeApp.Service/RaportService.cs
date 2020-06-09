@@ -25,7 +25,7 @@ namespace TimeApp.Service
             _weekrepo = weekrepo;
             _userrepo = userrepo;
     }
-        public async Task<ResultDTO> AddRaport(int userId)
+        public async Task<ResultDTO> AddRaport(int userId,string monthName)
         {
             var result = new ResultDTO()
             {
@@ -35,7 +35,8 @@ namespace TimeApp.Service
             {
                 await _raportrepo.Add(new Raports
                 {
-                    UserId = userId,             
+                    UserId = userId,
+                    Month = monthName
                 });
             }
             catch (Exception e)
@@ -90,10 +91,94 @@ namespace TimeApp.Service
             return result;
         }
 
-        public async Task<List<Raports>> GetAllRaports()
+        public async Task<RaportListDTO> GetAllRaports()
         {
             var raportsList = await _raportrepo.GetAll();
-            return raportsList;
+            var projectList = await _projectrepo.GetAll();
+
+            var weekList = await _weekrepo.GetAll();
+            var userList = await _userrepo.GetAll();
+            var finalRaportList = new List<RaportDTO>();
+            foreach (User user in userList)
+            {
+                var raportList = new List<Raports>();
+                
+                var separator = " ";
+                string name = string.Concat(user.Name, separator);
+                string finalName = string.Concat(name, user.Surname);
+                foreach (Raports raport in raportsList)
+                {
+                    if (raport.UserId == user.Id)
+                        raportList.Add(raport);
+                }
+
+                foreach (Raports raport in raportList)
+                {
+                    var finalProjectListForModel = new List<ProjectDTO>();
+                    var finalWeekList = new List<WeekDTO>();
+                    foreach (Week week in weekList)
+                    {
+                        if (week.RaportId == raport.Id)
+                        {
+                            var finalProjectList = new List<ProjectDTO>();
+                            foreach (Project project in projectList)
+                            {
+                                if (project.WeekId == week.Id)
+                                {
+                                    finalProjectList.Add(new ProjectDTO
+                                    {
+                                        Name = project.Name,
+                                        WorkedHours = project.WorkedHours
+                                    });
+                                }
+                            }
+                            finalWeekList.Add(new WeekDTO
+                            {
+                                WeekNumber = week.WeekNumber,
+                                WorkedHours = week.WorkedHours,
+                                HoursInWeek = week.HoursInWeek,
+                                Projects = finalProjectList
+                            });
+
+                            foreach (ProjectDTO project in finalProjectList)
+                            {
+                                if (!finalProjectListForModel.Any(name => name.Name == project.Name))
+                                {
+                                    finalProjectListForModel.Add(new ProjectDTO()
+                                    {
+                                        Name = project.Name,
+                                        WorkedHours = project.WorkedHours
+                                    });
+                                }
+                                else
+                                {
+                                    var temp = finalProjectListForModel.Find(name => name.Name == project.Name);
+                                    temp.WorkedHours = temp.WorkedHours + project.WorkedHours;
+                                }
+                            }
+                        }
+                    }
+                    var raportDTO = new RaportDTO()
+                    {
+                        Id = raport.Id,
+                        Email = user.Email,
+                        User = finalName,
+                        Month = raport.Month,
+                        HoursInMonth = raport.HoursInMonth,
+                        WorkedHours = raport.WorkedHours,
+                        ProjetList = finalProjectListForModel,
+                        WeekList = finalWeekList,
+                        IsClosed = raport.IsClosed,
+                        IsAccepted = raport.IsAccepted
+                    };
+                    finalRaportList.Add(raportDTO);
+                }
+            }          
+            var final = new RaportListDTO()
+            {
+                RaportList = finalRaportList
+            };
+            return final;
         }
 
         public async Task<RaportListDTO> GetCurrentUserRaports(int userId)

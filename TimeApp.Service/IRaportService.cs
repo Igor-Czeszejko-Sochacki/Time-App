@@ -10,10 +10,10 @@ namespace TimeApp.Service
 {
     public interface IRaportService
     {
-        Task<ResultDTO> AddRaport(int userId);
+        Task<ResultDTO> AddRaport(int userId, string monthName);
         Task<ResultDTO> PatchClosedStatus(int raportId, bool closedStatus);
         Task<ResultDTO> PatchAcceptedStatus(int raportId, bool acceptedStatus);
-        Task<List<Raports>> GetAllRaports();
+        Task<RaportListDTO> GetAllRaports();
         Task<RaportListDTO> GetCurrentUserRaports(int userId);
         Task<ResultDTO> AddProject(ProjectVM projectVM);
         Task<List<Project>> GetAllProjects();

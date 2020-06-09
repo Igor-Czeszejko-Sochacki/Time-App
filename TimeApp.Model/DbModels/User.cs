@@ -14,6 +14,7 @@ namespace TimeApp.Model
         public string Status { get; set; }  
         public bool IsActive { get; set; }
         public string Token { get; set; }
+        [JsonIgnore]
         public List<Raports> Raports { get; set; }
     }
 }

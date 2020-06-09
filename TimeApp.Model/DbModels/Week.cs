@@ -10,6 +10,7 @@ namespace TimeApp.Model.DbModels
         public int WeekNumber { get; set; }
         public int HoursInWeek { get; set; }
         public int WorkedHours { get; set; }
+        [JsonIgnore]
         public List<Project> Projects { get; set; }
         public int RaportId { get; set; }
         [JsonIgnore]

@@ -11,10 +11,10 @@ using TimeApp.Service;
 
 namespace TimeApp.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
-   // [Authorize]
+    // [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -48,7 +48,7 @@ namespace TimeApp.Controllers
                 return BadRequest(result);
             return Ok("User active status was patched");
         }
-        [HttpGet("GetAllUsers")]
+        [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
             var userList = await _userService.GetAllUsers();

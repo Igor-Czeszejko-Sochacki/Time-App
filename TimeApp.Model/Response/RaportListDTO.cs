@@ -6,6 +6,6 @@ namespace TimeApp.Model.Response
 {
     public class RaportListDTO
     {
-        public List<RaportDTO> RaportList { get; set; }
+        public List<RaportDTO> Raports { get; set; }
     }
 }

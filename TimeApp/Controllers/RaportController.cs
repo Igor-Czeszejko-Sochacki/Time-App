@@ -45,6 +45,15 @@ namespace TimeApp.API.Controllers
                 return BadRequest(result);
             return Ok("Week was added");
         }
+
+        [HttpPost("AddMainProject")]
+        public async Task<IActionResult> AddMainProject(string name)
+        {
+            var result = await _raportService.AddMainProject(name);
+            if (result.Response != null)
+                return BadRequest(result);
+            return Ok("Main project was added");
+        }
         [HttpPatch("PatchClosedStatus")]
         public async Task<IActionResult> PatchClosedStatus(int raportId, bool closedStatus)
         {
@@ -99,10 +108,28 @@ namespace TimeApp.API.Controllers
             return Ok(raportList);
         }
 
+        [HttpGet("GetClosedRaports")]
+        public async Task<IActionResult> GetClosedRaports(int userId)
+        {
+            var projectList = await _raportService.GetClosedRaports(userId);
+            if (projectList == null)
+                return BadRequest("No projects to show");
+            return Ok(projectList);
+        }
+
         [HttpGet("GetAllProjects")]
         public async Task<IActionResult> GetAllProjects()
         {
             var projectList = await _raportService.GetAllProjects();
+            if (projectList == null)
+                return BadRequest("No projects to show");
+            return Ok(projectList);
+        }
+
+        [HttpGet("GetAllProjectsTotal")]
+        public async Task<IActionResult> GetAllProjectsTotal()
+        {
+            var projectList = await _raportService.GetAllProjectsTotal();
             if (projectList == null)
                 return BadRequest("No projects to show");
             return Ok(projectList);

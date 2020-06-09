@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TimeApp.Model;
@@ -101,6 +102,7 @@ namespace TimeApp.Service
             var raportList = new List<Raports>();
             var finalRaportList = new List<RaportDTO>();
             var projectList = await _projectrepo.GetAll();
+            
             var weekList = await _weekrepo.GetAll();
             var user = await _userrepo.GetSingleEntity(x => x.Id == userId);
             var separator = " ";
@@ -116,6 +118,7 @@ namespace TimeApp.Service
 
             foreach(Raports raport in raportList)
             {
+                var finalProjectListForModel = new List<ProjectDTO>();
                 var finalWeekList = new List<WeekDTO>();
                 foreach (Week week in weekList)
                 {
@@ -141,6 +144,22 @@ namespace TimeApp.Service
                             Projects = finalProjectList 
                         });
 
+                        foreach (ProjectDTO project in finalProjectList)
+                        {
+                            if (!finalProjectListForModel.Any(name => name.Name == project.Name))
+                            {
+                                finalProjectListForModel.Add(new ProjectDTO()
+                                {
+                                    Name = project.Name,
+                                    WorkedHours = project.WorkedHours
+                                });
+                            }
+                            else
+                            {
+                                var temp = finalProjectListForModel.Find(name => name.Name == project.Name);
+                                temp.WorkedHours = temp.WorkedHours + project.WorkedHours;
+                            }
+                        }
                     }
                 }
                 var raportDTO = new RaportDTO()
@@ -151,6 +170,7 @@ namespace TimeApp.Service
                     Month = raport.Month,
                     HoursInMonth = raport.HoursInMonth,
                     WorkedHours = raport.WorkedHours,
+                    ProjetList = finalProjectListForModel,
                     WeekList = finalWeekList,
                     IsClosed = raport.IsClosed,
                     IsAccepted = raport.IsAccepted

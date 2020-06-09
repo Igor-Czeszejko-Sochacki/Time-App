@@ -12,7 +12,7 @@ namespace TimeApp.Model.Response
         public string Month { get; set; }
         public int HoursInMonth { get; set; }
         public int WorkedHours { get; set; }
-        public List<Project> ProjetList { get; set; }
+        public List<ProjectDTO> ProjetList { get; set; }
         public List<WeekDTO> WeekList { get; set; }
         public bool IsClosed { get; set; }
         public bool IsAccepted { get; set; }

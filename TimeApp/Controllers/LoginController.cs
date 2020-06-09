@@ -13,15 +13,15 @@ namespace TimeApp.API.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class LoginController : ControllerBase
     {
-        private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private readonly ILoginService _authService;
+        public LoginController(ILoginService authService)
         {
             _authService = authService;
         }
         [AllowAnonymous]
-        [HttpPost ("Login")]
+        [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
             //var result = await _authService.Login(loginVM);

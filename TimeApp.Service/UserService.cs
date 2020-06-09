@@ -74,7 +74,7 @@ namespace TimeApp.Service
         }
        
 
-        public async Task<ResultDTO> PatchActiveStatus(int userId, bool activeStatus)
+        public async Task<ResultDTO> DeactivateUser(int userId, bool activeStatus)
         {
             var result = new ResultDTO()
             {

@@ -11,10 +11,10 @@ namespace TimeApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RaportController : ControllerBase
+    public class RaportsController : ControllerBase
     {
         private readonly IRaportService _raportService;
-        public RaportController(IRaportService raportService)
+        public RaportsController(IRaportService raportService)
         {
             _raportService = raportService;
         }
@@ -54,22 +54,31 @@ namespace TimeApp.API.Controllers
                 return BadRequest(result);
             return Ok("Main project was added");
         }
-        [HttpPatch("PatchClosedStatus")]
-        public async Task<IActionResult> PatchClosedStatus(int raportId, bool closedStatus)
+        [HttpPatch("Close")]
+        public async Task<IActionResult> Close(int raportId)
         {
-            var result = await _raportService.PatchClosedStatus(raportId, closedStatus);
+            var result = await _raportService.Close(raportId);
             if (result.Response != null)
                 return BadRequest(result);
             return Ok("Closed status was patched");
         }
 
-        [HttpPatch("PatchAcceptedStatus")]
-        public async Task<IActionResult> PatchAcceptedStatus(int raportId, bool acceptedStatus)
+        [HttpPatch("Reject")]
+        public async Task<IActionResult> Reject(int raportId)
         {
-            var result = await _raportService.PatchAcceptedStatus(raportId, acceptedStatus);
+            var result = await _raportService.Reject(raportId);
             if (result.Response != null)
                 return BadRequest(result);
-            return Ok("Accepted status was patched");
+            return Ok("Raport was rejected");
+        }
+
+        [HttpPatch("Accept")]
+        public async Task<IActionResult> Accept(int raportId)
+        {
+            var result = await _raportService.Accept(raportId);
+            if (result.Response != null)
+                return BadRequest(result);
+            return Ok("Raport was accepted");
         }
 
         [HttpPatch("PatchProject")]
@@ -99,7 +108,7 @@ namespace TimeApp.API.Controllers
             return Ok(raportList);
         }
 
-        [HttpGet("GetCurrentUserRaports")]
+        [HttpGet]
         public async Task<IActionResult> GetCurrentUserRaports(int userId)
         {
             var raportList = await _raportService.GetCurrentUserRaports(userId);
@@ -126,14 +135,7 @@ namespace TimeApp.API.Controllers
             return Ok(projectList);
         }
 
-        [HttpGet("GetAllProjectsTotal")]
-        public async Task<IActionResult> GetAllProjectsTotal()
-        {
-            var projectList = await _raportService.GetAllProjectsTotal();
-            if (projectList == null)
-                return BadRequest("No projects to show");
-            return Ok(projectList);
-        }
+        
 
         [HttpGet("GetAllWeeks")]
         public async Task<IActionResult> GetAllWeeks()

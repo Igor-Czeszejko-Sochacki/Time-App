@@ -9,7 +9,7 @@ using TimeApp.Model.Response;
 
 namespace TimeApp.Service
 {
-    public interface IAuthService
+    public interface ILoginService
     {
         Task<User> Login(LoginVM loginVM);
         Task<List<User>> GetAllUsers();

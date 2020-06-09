@@ -12,7 +12,7 @@ namespace TimeApp.Service
     {
         Task<ResultDTO> AddUser(UserWithoutIdVM userVM);
         Task<ResultDTO> PatchUser(int userId, UserWithoutIdVM userWithoutIdVM);
-        Task<ResultDTO> PatchActiveStatus(int userId, bool activeStatus);
+        Task<ResultDTO> DeactivateUser(int userId, bool activeStatus);
         Task<List<User>> GetAllUsers();
     }
 }

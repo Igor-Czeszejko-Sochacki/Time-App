@@ -25,7 +25,7 @@ namespace TimeApp.Service
             _weekrepo = weekrepo;
             _userrepo = userrepo;
             _mainprojectrepo = mainprojectrepo;
-    }
+        }
         public async Task<ResultDTO> AddRaport(int userId,string monthName)
         {
             var result = new ResultDTO()
@@ -135,7 +135,7 @@ namespace TimeApp.Service
         }
 
         
-        public async Task<ResultDTO> PatchClosedStatus(int raportId, bool closedStatus)
+        public async Task<ResultDTO> Close(int raportId)
         {
             var result = new ResultDTO()
             {
@@ -146,7 +146,7 @@ namespace TimeApp.Service
                 var raport = await _raportrepo.GetSingleEntity(x => x.Id == raportId);
                 if (raport == null)
                     result.Response = "Raport not found";
-                    raport.IsClosed =closedStatus;
+                raport.IsClosed = true;
                 await _raportrepo.Patch(raport);
             }
             catch (Exception e)
@@ -157,7 +157,7 @@ namespace TimeApp.Service
             return result;
         }
 
-        public async Task<ResultDTO> PatchAcceptedStatus(int raportId, bool acceptedStatus)
+        public async Task<ResultDTO> Reject(int raportId)
         {
             var result = new ResultDTO()
             {
@@ -168,7 +168,30 @@ namespace TimeApp.Service
                 var raport = await _raportrepo.GetSingleEntity(x => x.Id == raportId);
                 if (raport == null)
                     result.Response = "Raport not found";
-                raport.IsAccepted = acceptedStatus;
+                raport.IsAccepted = false;
+                raport.IsClosed = false;
+                await _raportrepo.Patch(raport);
+            }
+            catch (Exception e)
+            {
+                result.Response = e.Message;
+                return result;
+            }
+            return result;
+        }
+
+        public async Task<ResultDTO> Accept(int raportId)
+        {
+            var result = new ResultDTO()
+            {
+                Response = null
+            };
+            try
+            {
+                var raport = await _raportrepo.GetSingleEntity(x => x.Id == raportId);
+                if (raport == null)
+                    result.Response = "Raport not found";
+                raport.IsAccepted = true;
                 await _raportrepo.Patch(raport);
             }
             catch (Exception e)
@@ -514,28 +537,7 @@ namespace TimeApp.Service
             return projectList;
         }
 
-        public async Task<List<ProjectDTO>> GetAllProjectsTotal()
-        {
-            var projectList = await _projectrepo.GetAll();
-            var finalList = new List<ProjectDTO>();
-            foreach (Project project in projectList)
-            {
-                if (!finalList.Any(name => name.Name == project.Name))
-                {
-                    finalList.Add(new ProjectDTO()
-                    {
-                        Name = project.Name,
-                        WorkedHours = project.WorkedHours
-                    });
-                }
-                else
-                {
-                    var temp = finalList.Find(name => name.Name == project.Name);
-                    temp.WorkedHours = temp.WorkedHours + project.WorkedHours;
-                }
-            }
-            return finalList;
-        }
+        
         
 
         public async Task<List<Week>> GetAllWeeks()

@@ -14,15 +14,15 @@ namespace TimeApp.Service
         Task<ResultDTO> AddProject(ProjectVM projectVM);
         Task<ResultDTO> AddWeek(WeekVM weekVM);
         Task<ResultDTO> AddMainProject(string name);
-        Task<ResultDTO> PatchClosedStatus(int raportId, bool closedStatus);
-        Task<ResultDTO> PatchAcceptedStatus(int raportId, bool acceptedStatus);
+        Task<ResultDTO> Close(int raportId);
+        Task<ResultDTO> Reject(int raportId);
+        Task<ResultDTO> Accept(int raportId);
         Task<ResultDTO> PatchProject(int projectId, ProjectVM projectVM);
         Task<ResultDTO> PatchWeek(int weekId, WeekVM weekVM);
         Task<RaportListDTO> GetAllRaports();
         Task<RaportListDTO> GetCurrentUserRaports(int userId);
         Task<RaportListDTO> GetClosedRaports(int userId);
         Task<List<Project>> GetAllProjects();
-        Task<List<ProjectDTO>> GetAllProjectsTotal();
         Task<List<Week>> GetAllWeeks();
         Task<ResultDTO> DeleteProject(int projectId);
         Task<ResultDTO> DeleteWeek(int weekId);

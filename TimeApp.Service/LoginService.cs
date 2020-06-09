@@ -13,11 +13,11 @@ using TimeApp.Repository;
 
 namespace TimeApp.Service
 {
-    public class AuthService : IAuthService
+    public class LoginService : ILoginService
     {
         private readonly IRepository<User> _userrepo;
         private readonly AppSettings _appSettings;
-        public AuthService(IRepository<User> userrepo, IOptions<AppSettings> appSettings)
+        public LoginService(IRepository<User> userrepo, IOptions<AppSettings> appSettings)
         {
             _userrepo = userrepo;
             _appSettings = appSettings.Value;

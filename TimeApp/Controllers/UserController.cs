@@ -23,7 +23,7 @@ namespace TimeApp.Controllers
             _userService = userService;
         }
 
-        [HttpPost("AddUser")]
+        [HttpPost]
         public async Task<IActionResult> AddUser(UserWithoutIdVM userVM)
         {
             var result = await _userService.AddUser(userVM);
@@ -40,10 +40,10 @@ namespace TimeApp.Controllers
                 return BadRequest(result);
             return Ok("User was patched");
         }
-        [HttpPatch("PatchActiveStatus")]
-        public async Task<IActionResult> PatchActiveStatus(int userId, bool activeStatus)
+        [HttpPatch("DeactivateUser")]
+        public async Task<IActionResult> DeactivateUser(int userId, bool activeStatus)
         {
-            var result = await _userService.PatchActiveStatus(userId, activeStatus);
+            var result = await _userService.DeactivateUser(userId, activeStatus);
             if (result.Response != null)
                 return BadRequest(result);
             return Ok("User active status was patched");

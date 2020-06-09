@@ -40,15 +40,6 @@ namespace TimeApp.Controllers
                 return BadRequest(result);
             return Ok("User was patched");
         }
-
-        [HttpGet("GetAllUsers")]
-        public async Task<IActionResult> GetAllUsers()
-        {
-            var userList = await _userService.GetAllUsers();
-            if (userList == null)
-                return BadRequest("No users to show");
-            return Ok(userList);
-        }
         [HttpPatch("PatchActiveStatus")]
         public async Task<IActionResult> PatchActiveStatus(int userId, bool activeStatus)
         {
@@ -57,5 +48,14 @@ namespace TimeApp.Controllers
                 return BadRequest(result);
             return Ok("User active status was patched");
         }
+        [HttpGet("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var userList = await _userService.GetAllUsers();
+            if (userList == null)
+                return BadRequest("No users to show");
+            return Ok(userList);
+        }
+       
     }
 }

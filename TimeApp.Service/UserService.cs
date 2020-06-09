@@ -72,11 +72,7 @@ namespace TimeApp.Service
             }
             return result;
         }
-        public async Task<List<User>> GetAllUsers()
-        {
-            var userList = await _userrepo.GetAll();
-            return userList;
-        }
+       
 
         public async Task<ResultDTO> PatchActiveStatus(int userId, bool activeStatus)
         {
@@ -98,6 +94,11 @@ namespace TimeApp.Service
                 return result;
             }
             return result;
+        }
+        public async Task<List<User>> GetAllUsers()
+        {
+            var userList = await _userrepo.GetAll();
+            return userList;
         }
     }
 }

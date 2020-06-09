@@ -93,17 +93,15 @@ namespace TimeApp.Service
 
         public async Task<RaportListDTO> GetAllRaports()
         {
+            var separator = " ";
             var raportsList = await _raportrepo.GetAll();
             var projectList = await _projectrepo.GetAll();
-
             var weekList = await _weekrepo.GetAll();
             var userList = await _userrepo.GetAll();
             var finalRaportList = new List<RaportDTO>();
             foreach (User user in userList)
             {
                 var raportList = new List<Raports>();
-                
-                var separator = " ";
                 string name = string.Concat(user.Name, separator);
                 string finalName = string.Concat(name, user.Surname);
                 foreach (Raports raport in raportsList)
@@ -183,13 +181,13 @@ namespace TimeApp.Service
 
         public async Task<RaportListDTO> GetCurrentUserRaports(int userId)
         {
+            var user = await _userrepo.GetSingleEntity(x => x.Id == userId);
             var raportsList = await _raportrepo.GetAll();
+            var projectList = await _projectrepo.GetAll();
+            var weekList = await _weekrepo.GetAll();
             var raportList = new List<Raports>();
             var finalRaportList = new List<RaportDTO>();
-            var projectList = await _projectrepo.GetAll();
-            
-            var weekList = await _weekrepo.GetAll();
-            var user = await _userrepo.GetSingleEntity(x => x.Id == userId);
+       
             var separator = " ";
             string name = string.Concat(user.Name, separator);
             string finalName = string.Concat(name, user.Surname);
@@ -199,8 +197,6 @@ namespace TimeApp.Service
                 if (raport.UserId == userId)
                     raportList.Add(raport);
             }
-
-
             foreach(Raports raport in raportList)
             {
                 var finalProjectListForModel = new List<ProjectDTO>();
@@ -371,7 +367,6 @@ namespace TimeApp.Service
                 await _weekrepo.Add(new Week
                 {
                     WeekNumber = weekVM.WeekNumber,
-                    WorkedHours = weekVM.WorkedHours,
                     HoursInWeek = weekVM.HoursInWeek,
                     RaportId = weekVM.RaportId
                 });
@@ -402,8 +397,6 @@ namespace TimeApp.Service
                     result.Response = "Week not found";
                 if (weekVM.WeekNumber != null)
                     week.WeekNumber = weekVM.WeekNumber;
-                if (weekVM.WorkedHours != null)
-                    week.WorkedHours = weekVM.WorkedHours;
                 if (weekVM.HoursInWeek != null)
                     week.HoursInWeek = weekVM.HoursInWeek;
 

@@ -9,12 +9,12 @@ using TimeApp.Service;
 
 namespace TimeApp.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/raports")]
     [ApiController]
-    public class raportsController : ControllerBase
+    public class RaportsController : ControllerBase
     {
         private readonly IRaportService _raportService;
-        public raportsController(IRaportService raportService)
+        public RaportsController(IRaportService raportService)
         {
             _raportService = raportService;
         }

@@ -11,7 +11,7 @@ using TimeApp.Service;
 namespace TimeApp.API.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/login")]
     [ApiController]
     public class LoginController : ControllerBase
     {

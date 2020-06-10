@@ -32,7 +32,7 @@ namespace TimeApp.Controllers
             return Ok("User was added");
         }
 
-        [HttpPatch("PatchUser")]
+        [HttpPatch("patchUser")]
         public async Task<IActionResult> PatchUser(int userId, UserWithoutIdVM userWithoutIdVM)
         {
             var result = await _userService.PatchUser(userId, userWithoutIdVM);
@@ -42,7 +42,7 @@ namespace TimeApp.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPatch("DeactivateUser")]
+        [HttpPatch("deactivateUser")]
         public async Task<IActionResult> DeactivateUser(int userId, bool activeStatus)
         {
             var result = await _userService.DeactivateUser(userId, activeStatus);

@@ -38,7 +38,7 @@ namespace TimeApp.API.Controllers
         }
 
         
-        [HttpGet("GetAllUsersAuth")]
+        [HttpGet("getAllUsersAuth")]
         public async Task<IActionResult> GetAllUsers()
         {
             var userList = await _loginService.GetAllUsers();

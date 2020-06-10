@@ -11,15 +11,15 @@ namespace TimeApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RaportsController : ControllerBase
+    public class raportsController : ControllerBase
     {
         private readonly IRaportService _raportService;
-        public RaportsController(IRaportService raportService)
+        public raportsController(IRaportService raportService)
         {
             _raportService = raportService;
         }
 
-        [HttpPost("AddRaport")]
+        [HttpPost("addRaport")]
         public async Task<IActionResult> AddRaport(int userId, string monthName)
         {
             var result = await _raportService.AddRaport(userId,monthName);
@@ -28,7 +28,7 @@ namespace TimeApp.API.Controllers
             return Ok("Raport was added");
         }
 
-        [HttpPost("AddProject")]
+        [HttpPost("addProject")]
         public async Task<IActionResult> AddProject(ProjectVM projectVM)
         {
             var result = await _raportService.AddProject(projectVM);
@@ -37,7 +37,7 @@ namespace TimeApp.API.Controllers
             return Ok("Project was added");
         }
 
-        [HttpPost("AddWeek")]
+        [HttpPost("addWeek")]
         public async Task<IActionResult> AddWeek(WeekVM weekVm)
         {
             var result = await _raportService.AddWeek(weekVm);
@@ -46,7 +46,7 @@ namespace TimeApp.API.Controllers
             return Ok("Week was added");
         }
 
-        [HttpPost("AddMainProject")]
+        [HttpPost("addMainProject")]
         public async Task<IActionResult> AddMainProject(string name)
         {
             var result = await _raportService.AddMainProject(name);
@@ -54,7 +54,7 @@ namespace TimeApp.API.Controllers
                 return BadRequest(result);
             return Ok("Main project was added");
         }
-        [HttpPatch("Close")]
+        [HttpPatch("close")]
         public async Task<IActionResult> Close(int raportId)
         {
             var result = await _raportService.Close(raportId);
@@ -63,7 +63,7 @@ namespace TimeApp.API.Controllers
             return Ok("Closed status was patched");
         }
 
-        [HttpPatch("Reject")]
+        [HttpPatch("reject")]
         public async Task<IActionResult> Reject(int raportId)
         {
             var result = await _raportService.Reject(raportId);
@@ -72,7 +72,7 @@ namespace TimeApp.API.Controllers
             return Ok("Raport was rejected");
         }
 
-        [HttpPatch("Accept")]
+        [HttpPatch("accept")]
         public async Task<IActionResult> Accept(int raportId)
         {
             var result = await _raportService.Accept(raportId);
@@ -81,7 +81,7 @@ namespace TimeApp.API.Controllers
             return Ok("Raport was accepted");
         }
 
-        [HttpPatch("PatchProject")]
+        [HttpPatch("patchProject")]
         public async Task<IActionResult> PatchProject(int projectId, ProjectVM projectVM)
         {
             var result = await _raportService.PatchProject(projectId, projectVM);
@@ -90,7 +90,7 @@ namespace TimeApp.API.Controllers
             return Ok("Project was patched");
         }
 
-        [HttpPatch("PatchWeek")]
+        [HttpPatch("patchWeek")]
         public async Task<IActionResult> PatchWeek(int weekId, WeekVM weekVm)
         {
             var result = await _raportService.PatchWeek(weekId, weekVm);
@@ -99,7 +99,7 @@ namespace TimeApp.API.Controllers
             return Ok("Week was patched");
         }
 
-        [HttpGet("GetAllRaports")]
+        [HttpGet("getAllRaports")]
         public async Task<IActionResult> GetAllRaports()
         {
             var raportList = await _raportService.GetAllRaports();
@@ -117,7 +117,7 @@ namespace TimeApp.API.Controllers
             return Ok(raportList);
         }
 
-        [HttpGet("GetClosedRaports")]
+        [HttpGet("getClosedRaports")]
         public async Task<IActionResult> GetClosedRaports(string userEmail)
         {
             var projectList = await _raportService.GetClosedRaports(userEmail);
@@ -126,7 +126,7 @@ namespace TimeApp.API.Controllers
             return Ok(projectList);
         }
 
-        [HttpGet("GetAllProjects")]
+        [HttpGet("getAllProjects")]
         public async Task<IActionResult> GetAllProjects()
         {
             var projectList = await _raportService.GetAllProjects();
@@ -137,7 +137,7 @@ namespace TimeApp.API.Controllers
 
         
 
-        [HttpGet("GetAllWeeks")]
+        [HttpGet("getAllWeeks")]
         public async Task<IActionResult> GetAllWeeks()
         {
             var weekList = await _raportService.GetAllWeeks();
@@ -146,7 +146,7 @@ namespace TimeApp.API.Controllers
             return Ok(weekList);
         }
 
-        [HttpDelete("DeleteProject")]
+        [HttpDelete("deleteProject")]
         public async Task<IActionResult> DeleteProject(int projectId)
         {
             var result = await _raportService.DeleteProject(projectId);
@@ -155,7 +155,7 @@ namespace TimeApp.API.Controllers
             return Ok("Project was deleted");
         }
 
-        [HttpDelete("DeleteWeek")]
+        [HttpDelete("deleteWeek")]
         public async Task<IActionResult> DeleteWeek(int weekId)
         {
             var result = await _raportService.DeleteWeek(weekId);

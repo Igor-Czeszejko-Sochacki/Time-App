@@ -118,9 +118,9 @@ namespace TimeApp.API.Controllers
         }
 
         [HttpGet("getClosedRaports")]
-        public async Task<IActionResult> GetClosedRaports(string userEmail)
+        public async Task<IActionResult> GetClosedRaports()
         {
-            var projectList = await _raportService.GetClosedRaports(userEmail);
+            var projectList = await _raportService.GetClosedRaports();
             if (projectList == null)
                 return BadRequest("No projects to show");
             return Ok(projectList);

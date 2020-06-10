@@ -446,26 +446,26 @@ namespace TimeApp.Service
             return final;
         }
 
-        public async Task<RaportListDTO> GetClosedRaports(string userEmail)
+        public async Task<RaportListDTO> GetClosedRaports()
         {
-            var user = await _userrepo.GetSingleEntity(x => x.Email == userEmail);
             var raportsList = await _raportrepo.GetAll();
             var projectList = await _projectrepo.GetAll();
             var weekList = await _weekrepo.GetAll();
             var raportList = new List<Raports>();
             var finalRaportList = new List<RaportDTO>();
 
-            var separator = " ";
-            string name = string.Concat(user.Name, separator);
-            string finalName = string.Concat(name, user.Surname);
-
             foreach (Raports raport in raportsList)
             {
-                if (raport.UserId == user.Id && raport.IsClosed == true)
+                if (raport.IsClosed == true)
                     raportList.Add(raport);
             }
             foreach (Raports raport in raportList)
             {
+                var user = await _userrepo.GetSingleEntity(x => x.Id == raport.UserId);
+                var separator = " ";
+                string name = string.Concat(user.Name, separator);
+                string finalName = string.Concat(name, user.Surname);
+
                 var finalProjectListForModel = new List<ProjectDTO>();
                 var finalWeekList = new List<WeekDTO>();
                 foreach (Week week in weekList)

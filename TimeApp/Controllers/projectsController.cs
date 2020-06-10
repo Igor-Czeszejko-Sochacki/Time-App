@@ -8,13 +8,13 @@ using TimeApp.Service;
 
 namespace TimeApp.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/projects")]
     [ApiController]
-    public class projectsController : ControllerBase
+    public class ProjectsController : ControllerBase
     {
 
         private readonly IProjectService _projectService;
-        public projectsController(IProjectService projectService)
+        public ProjectsController(IProjectService projectService)
         {
             _projectService = projectService;
         }

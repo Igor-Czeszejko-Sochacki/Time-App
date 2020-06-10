@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TimeApp.Model;
+using TimeApp.Model.DbModels;
 using TimeApp.Model.Request;
 using TimeApp.Model.Response;
 using TimeApp.Repository;
@@ -11,10 +12,13 @@ namespace TimeApp.Service
     public class UserService : IUserService
     {
         private readonly IRepository<User> _userrepo;
-
-        public UserService(IRepository<User> userrepo)
+        private readonly IRepository<Raports> _raportrepo;
+        private readonly IRepository<Week> _weekrepo;
+        public UserService(IRepository<User> userrepo, IRepository<Raports> raportrepo, IRepository<Week> weekrepo)
         {
             _userrepo = userrepo;
+            _raportrepo = raportrepo;
+            _weekrepo = weekrepo;
         }
 
         public async Task<ResultDTO> AddUser(UserWithoutIdVM userVM)
@@ -25,15 +29,41 @@ namespace TimeApp.Service
             };
             try
             {
-                await _userrepo.Add(new User
+                var user = new User
                 {
                     Name = userVM.Name,
                     Surname = userVM.Surname,
                     Email = userVM.Email,
-                    Password =  userVM.Password,
+                    Password = userVM.Password,
                     Status = userVM.Status,
                     IsActive = true
+                };
+                await _userrepo.Add(user);
+
+                var raport = new Raports
+                {
+                    Month = "Czerwiec 2020",
+                    HoursInMonth = 176,
+                    UserId = user.Id
+                };
+                await _raportrepo.Add(raport);
+
+                for (int i=1; i<5; i++)
+                {
+                    await _weekrepo.Add(new Week
+                    {
+                        WeekNumber = i,
+                        HoursInWeek = 40,
+                        RaportId = raport.Id                    
+                    });
+                }
+                await _weekrepo.Add(new Week
+                {
+                    WeekNumber = 5,
+                    HoursInWeek = 16,
+                    RaportId = raport.Id
                 });
+
             }
             catch (Exception e)
             {

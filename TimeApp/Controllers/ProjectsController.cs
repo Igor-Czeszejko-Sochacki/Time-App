@@ -13,17 +13,17 @@ namespace TimeApp.API.Controllers
     public class ProjectsController : ControllerBase
     {
 
-        private readonly IRaportService _raportService;
-        public ProjectsController(IRaportService raportService)
+        private readonly IProjectService _projectService;
+        public ProjectsController(IProjectService projectService)
         {
-            _raportService = raportService;
+            _projectService = projectService;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetAllProjectsTotal()
         {
-            var projectList = await _raportService.GetAllProjectsTotal();
+            var projectList = await _projectService.GetAllProjectsTotal();
             if (projectList == null)
                 return BadRequest("No projects to show");
             return Ok(projectList);

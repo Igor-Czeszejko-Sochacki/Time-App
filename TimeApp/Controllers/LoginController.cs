@@ -15,10 +15,10 @@ namespace TimeApp.API.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly ILoginService _authService;
-        public LoginController(ILoginService authService)
+        private readonly ILoginService _loginService;
+        public LoginController(ILoginService loginService)
         {
-            _authService = authService;
+            _loginService = loginService;
         }
         [AllowAnonymous]
         [HttpPost]
@@ -29,7 +29,7 @@ namespace TimeApp.API.Controllers
             //    return BadRequest(result);
             //return Ok(result.Response);
 
-            var user = await _authService.Login(loginVM);
+            var user = await _loginService.Login(loginVM);
 
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
@@ -37,11 +37,11 @@ namespace TimeApp.API.Controllers
             return Ok(user);
         }
 
-
+        
         [HttpGet("GetAllUsersAuth")]
         public async Task<IActionResult> GetAllUsers()
         {
-            var userList = await _authService.GetAllUsers();
+            var userList = await _loginService.GetAllUsers();
             if (userList == null)
                 return BadRequest("No users to show");
             return Ok(userList);

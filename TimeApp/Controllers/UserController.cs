@@ -22,7 +22,7 @@ namespace TimeApp.Controllers
         {
             _userService = userService;
         }
-
+        [Authorize(Roles = "Kierownik")]
         [HttpPost]
         public async Task<IActionResult> AddUser(UserWithoutIdVM userVM)
         {
@@ -40,6 +40,8 @@ namespace TimeApp.Controllers
                 return BadRequest(result);
             return Ok("User was patched");
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpPatch("DeactivateUser")]
         public async Task<IActionResult> DeactivateUser(int userId, bool activeStatus)
         {
@@ -48,6 +50,8 @@ namespace TimeApp.Controllers
                 return BadRequest(result);
             return Ok("User active status was patched");
         }
+
+        [Authorize(Roles = "User")]
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {

@@ -360,9 +360,9 @@ namespace TimeApp.Service
             return final;
         }
 
-        public async Task<RaportListDTO> GetCurrentUserRaports(int userId)
+        public async Task<RaportListDTO> GetCurrentUserRaports(string userEmail)
         {
-            var user = await _userrepo.GetSingleEntity(x => x.Id == userId);
+            var user = await _userrepo.GetSingleEntity(x => x.Email == userEmail);
             var raportsList = await _raportrepo.GetAll();
             var projectList = await _projectrepo.GetAll();
             var weekList = await _weekrepo.GetAll();
@@ -375,7 +375,7 @@ namespace TimeApp.Service
             
             foreach(Raports raport in raportsList)
             {
-                if (raport.UserId == userId)
+                if (raport.UserId == user.Id)
                     raportList.Add(raport);
             }
             foreach(Raports raport in raportList)
@@ -446,9 +446,9 @@ namespace TimeApp.Service
             return final;
         }
 
-        public async Task<RaportListDTO> GetClosedRaports(int userId)
+        public async Task<RaportListDTO> GetClosedRaports(string userEmail)
         {
-            var user = await _userrepo.GetSingleEntity(x => x.Id == userId);
+            var user = await _userrepo.GetSingleEntity(x => x.Email == userEmail);
             var raportsList = await _raportrepo.GetAll();
             var projectList = await _projectrepo.GetAll();
             var weekList = await _weekrepo.GetAll();
@@ -461,7 +461,7 @@ namespace TimeApp.Service
 
             foreach (Raports raport in raportsList)
             {
-                if (raport.UserId == userId && raport.IsClosed == true)
+                if (raport.UserId == user.Id && raport.IsClosed == true)
                     raportList.Add(raport);
             }
             foreach (Raports raport in raportList)

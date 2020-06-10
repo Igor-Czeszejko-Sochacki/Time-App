@@ -69,6 +69,7 @@ namespace TimeApp
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRaportService, RaportService>();
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IProjectService, ProjectService>();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

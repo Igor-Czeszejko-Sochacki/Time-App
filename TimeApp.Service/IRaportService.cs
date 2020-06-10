@@ -20,8 +20,8 @@ namespace TimeApp.Service
         Task<ResultDTO> PatchProject(int projectId, ProjectVM projectVM);
         Task<ResultDTO> PatchWeek(int weekId, WeekVM weekVM);
         Task<RaportListDTO> GetAllRaports();
-        Task<RaportListDTO> GetCurrentUserRaports(int userId);
-        Task<RaportListDTO> GetClosedRaports(int userId);
+        Task<RaportListDTO> GetCurrentUserRaports(string userEmail);
+        Task<RaportListDTO> GetClosedRaports(string userEmail);
         Task<List<Project>> GetAllProjects();
         Task<List<Week>> GetAllWeeks();
         Task<ResultDTO> DeleteProject(int projectId);

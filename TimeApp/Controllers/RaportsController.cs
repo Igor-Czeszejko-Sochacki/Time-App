@@ -109,18 +109,18 @@ namespace TimeApp.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCurrentUserRaports(int userId)
+        public async Task<IActionResult> GetCurrentUserRaports(string userEmail)
         {
-            var raportList = await _raportService.GetCurrentUserRaports(userId);
+            var raportList = await _raportService.GetCurrentUserRaports(userEmail);
             if (raportList == null)
                 return BadRequest("User has no raports");
             return Ok(raportList);
         }
 
         [HttpGet("GetClosedRaports")]
-        public async Task<IActionResult> GetClosedRaports(int userId)
+        public async Task<IActionResult> GetClosedRaports(string userEmail)
         {
-            var projectList = await _raportService.GetClosedRaports(userId);
+            var projectList = await _raportService.GetClosedRaports(userEmail);
             if (projectList == null)
                 return BadRequest("No projects to show");
             return Ok(projectList);

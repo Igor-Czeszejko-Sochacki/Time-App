@@ -19,7 +19,6 @@ namespace TimeApp.API.Controllers
             _projectService = projectService;
         }
 
-
         [HttpGet]
         public async Task<IActionResult> GetAllProjectsTotal()
         {

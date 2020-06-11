@@ -313,6 +313,7 @@ namespace TimeApp.Service
                             }
                             finalWeekList.Add(new WeekDTO
                             {
+                                Id = week.Id,
                                 Week = week.WeekNumber,
                                 WorkedHours = week.WorkedHours,
                                 HoursInWeek = week.HoursInWeek,
@@ -400,6 +401,7 @@ namespace TimeApp.Service
                         }
                         finalWeekList.Add(new WeekDTO
                         {
+                            Id = week.Id,
                             Week = week.WeekNumber,
                             WorkedHours = week.WorkedHours,
                             HoursInWeek = week.HoursInWeek,

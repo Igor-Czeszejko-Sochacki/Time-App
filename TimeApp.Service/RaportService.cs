@@ -125,6 +125,7 @@ namespace TimeApp.Service
                 {
                    Name = name
                 });
+
             }
             catch (Exception e)
             {

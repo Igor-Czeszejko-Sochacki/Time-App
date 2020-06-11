@@ -31,7 +31,7 @@ namespace TimeApp.Service
                 {
                     Name = mainProject.Name,
                     WorkedHours = 0
-                }) ;
+                });
             }
 
             foreach (Project project in projectList)

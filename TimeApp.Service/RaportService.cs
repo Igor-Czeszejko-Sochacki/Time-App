@@ -395,6 +395,7 @@ namespace TimeApp.Service
                             {
                                 finalProjectList.Add(new ProjectDTO
                                 {
+                                    Id = project.Id,
                                     Name = project.Name,
                                     WorkedHours = project.WorkedHours
                                 });
@@ -408,13 +409,12 @@ namespace TimeApp.Service
                             HoursInWeek = week.HoursInWeek,
                             Projects = finalProjectList 
                         });
-
                         foreach (ProjectDTO project in finalProjectList)
                         {
                             if (!finalProjectListForModel.Any(name => name.Name == project.Name))
                             {
                                 finalProjectListForModel.Add(new ProjectDTO()
-                                {
+                                { 
                                     Name = project.Name,
                                     WorkedHours = project.WorkedHours
                                 });

@@ -537,9 +537,6 @@ namespace TimeApp.Service
             return projectList;
         }
 
-        
-        
-
         public async Task<List<Week>> GetAllWeeks()
         {
             var weekList = await _weekrepo.GetAll();

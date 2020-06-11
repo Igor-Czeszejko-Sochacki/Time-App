@@ -135,8 +135,6 @@ namespace TimeApp.API.Controllers
             return Ok(projectList);
         }
 
-        
-
         [HttpGet("getAllWeeks")]
         public async Task<IActionResult> GetAllWeeks()
         {

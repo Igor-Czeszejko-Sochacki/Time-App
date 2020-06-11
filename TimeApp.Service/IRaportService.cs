@@ -26,6 +26,5 @@ namespace TimeApp.Service
         Task<List<Week>> GetAllWeeks();
         Task<ResultDTO> DeleteProject(int projectId);
         Task<ResultDTO> DeleteWeek(int weekId);
-
     }
 }

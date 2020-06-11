@@ -14,7 +14,6 @@ namespace TimeApp.Controllers
 
     [Route("api/user")]
     [ApiController]
-    // [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -22,7 +21,7 @@ namespace TimeApp.Controllers
         {
             _userService = userService;
         }
-        [Authorize(Roles = "Kierownik")]
+
         [HttpPost]
         public async Task<IActionResult> AddUser(UserWithoutIdVM userVM)
         {
@@ -41,7 +40,6 @@ namespace TimeApp.Controllers
             return Ok("User was patched");
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPatch("deactivateUser")]
         public async Task<IActionResult> DeactivateUser(int userId, bool activeStatus)
         {
@@ -51,7 +49,6 @@ namespace TimeApp.Controllers
             return Ok("User active status was patched");
         }
 
-        [Authorize(Roles = "User")]
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -59,7 +56,6 @@ namespace TimeApp.Controllers
             if (userList == null)
                 return BadRequest("No users to show");
             return Ok(userList);
-        }
-       
+        } 
     }
 }

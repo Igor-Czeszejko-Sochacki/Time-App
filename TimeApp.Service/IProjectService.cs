@@ -8,7 +8,6 @@ namespace TimeApp.Service
 {
     public interface IProjectService
     {
-
         Task<List<ProjectDTO>> GetAllProjectsTotal();
     }
 }

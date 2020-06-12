@@ -226,10 +226,9 @@ namespace TimeApp.Service
                     result.Response = "Project not found";
                 if (projectVM.Name != null && exists == true)
                     project.Name = projectVM.Name;
-                if (projectVM.WorkedHours > project.WorkedHours)
+                if (projectVM.WorkedHours != project.WorkedHours)
                     project.WorkedHours = projectVM.WorkedHours;
-                else if (projectVM.WorkedHours < project.WorkedHours)
-                    result.Response = "Cant assign lower value";
+
                 await _projectrepo.Patch(project);
 
                 var week = await _weekrepo.GetSingleEntity(x => x.Id == projectVM.WeekId);
@@ -555,9 +554,18 @@ namespace TimeApp.Service
             try
             {
                 var project = await _projectrepo.GetSingleEntity(x => x.Id == projectId);
+                var hours = project.WorkedHours;
                 if (project == null)
                     result.Response = "Project not found";
+                
+                var week = await _weekrepo.GetSingleEntity(x => x.Id == project.WeekId);
+                week.WorkedHours = week.WorkedHours - hours;
+                var raport = await _raportrepo.GetSingleEntity(x => x.Id == week.RaportId);
+                raport.WorkedHours = raport.WorkedHours - hours;
+
                 await _projectrepo.Delete(project);
+                await _raportrepo.Patch(raport);
+                await _weekrepo.Patch(week);
             }
             catch (Exception e)
             {
@@ -575,8 +583,23 @@ namespace TimeApp.Service
             try
             {
                 var week = await _weekrepo.GetSingleEntity(x => x.Id == weekId);
+                var projectsList = await _projectrepo.GetAll();
                 if (week == null)
                     result.Response = "Week not found";
+
+                var hours=0;
+                foreach (Project project in projectsList)
+                {
+                    if (project.WeekId == weekId)
+                    {
+                        hours = hours + project.WorkedHours;
+                        await _projectrepo.Delete(project);
+                    }
+                }
+
+                var raport = await _raportrepo.GetSingleEntity(x => x.Id == week.RaportId);
+                raport.WorkedHours = raport.WorkedHours - hours;
+                await _raportrepo.Patch(raport);
                 await _weekrepo.Delete(week);
             }
             catch (Exception e)

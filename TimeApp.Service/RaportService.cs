@@ -65,7 +65,7 @@ namespace TimeApp.Service
                         exists = true;
                     }
                 }
-                if (projectVM.WorkedHours >= 0 && exists == true)
+                if (projectVM.WorkedHours >= 0 && exists == true && projectVM.WorkedHours < 61)
                 {
                     await _projectrepo.Add(new Project
                     {
@@ -221,23 +221,22 @@ namespace TimeApp.Service
                     }
                 }
                 var project = await _projectrepo.GetSingleEntity(x => x.Id == projectId);
+                var week = await _weekrepo.GetSingleEntity(x => x.Id == projectVM.WeekId);
+                var raport = await _raportrepo.GetSingleEntity(x => x.Id == week.RaportId);
                 var hours = project.WorkedHours;
                 if (project == null)
                     result.Response = "Project not found";
                 if (projectVM.Name != null && exists == true)
                     project.Name = projectVM.Name;
-                if (projectVM.WorkedHours != project.WorkedHours)
+               if (projectVM.WorkedHours != project.WorkedHours && projectVM.WorkedHours > 0 && projectVM.WorkedHours < 61)
+                {
                     project.WorkedHours = projectVM.WorkedHours;
-                
-
-                await _projectrepo.Patch(project);
-
-                var week = await _weekrepo.GetSingleEntity(x => x.Id == projectVM.WeekId);
-                week.WorkedHours = week.WorkedHours - hours + projectVM.WorkedHours;
-                var raport = await _raportrepo.GetSingleEntity(x => x.Id == week.RaportId);
-                raport.WorkedHours = raport.WorkedHours - hours + projectVM.WorkedHours;
-                await _raportrepo.Patch(raport);
-                await _weekrepo.Patch(week);
+                    week.WorkedHours = week.WorkedHours - hours + projectVM.WorkedHours;
+                    raport.WorkedHours = raport.WorkedHours - hours + projectVM.WorkedHours;
+                    await _raportrepo.Patch(raport);
+                    await _weekrepo.Patch(week);
+                }
+                await _projectrepo.Patch(project);   
             }
             catch (Exception e)
             {

@@ -47,9 +47,9 @@ namespace TimeApp.API.Controllers
         }
 
         [HttpPost("addMainProject")]
-        public async Task<IActionResult> AddMainProject(string name)
+        public async Task<IActionResult> AddMainProject(MainProjectVM mainProjectVM)
         {
-            var result = await _raportService.AddMainProject(name);
+            var result = await _raportService.AddMainProject(mainProjectVM);
             if (result.Response != null)
                 return BadRequest(result);
             return Ok("Main project was added");

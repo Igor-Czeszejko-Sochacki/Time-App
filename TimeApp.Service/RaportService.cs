@@ -113,7 +113,7 @@ namespace TimeApp.Service
             }
             return result;
         }
-        public async Task<ResultDTO> AddMainProject(string name)
+        public async Task<ResultDTO> AddMainProject(MainProjectVM mainProjectVM)
         {
             var result = new ResultDTO()
             {
@@ -123,7 +123,7 @@ namespace TimeApp.Service
             {
                 await _mainprojectrepo.Add(new MainProject
                 {
-                   Name = name
+                   Name = mainProjectVM.Name
                 });
 
             }
@@ -228,6 +228,7 @@ namespace TimeApp.Service
                     project.Name = projectVM.Name;
                 if (projectVM.WorkedHours != project.WorkedHours)
                     project.WorkedHours = projectVM.WorkedHours;
+                
 
                 await _projectrepo.Patch(project);
 

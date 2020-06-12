@@ -13,7 +13,7 @@ namespace TimeApp.Service
         Task<ResultDTO> AddRaport(int userId, string monthName);
         Task<ResultDTO> AddProject(ProjectVM projectVM);
         Task<ResultDTO> AddWeek(WeekVM weekVM);
-        Task<ResultDTO> AddMainProject(string name);
+        Task<ResultDTO> AddMainProject(MainProjectVM mainProjectVM);
         Task<ResultDTO> Close(int raportId);
         Task<ResultDTO> Reject(int raportId);
         Task<ResultDTO> Accept(int raportId);

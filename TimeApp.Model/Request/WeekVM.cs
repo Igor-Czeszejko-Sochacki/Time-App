@@ -8,7 +8,6 @@ namespace TimeApp.Model.Request
     {
         public int WeekNumber { get; set; }
         public int HoursInWeek { get; set; }
-        public int WorkedHours { get; set; }
         public int RaportId { get; set; }
     }
 }

@@ -11,10 +11,9 @@ using TimeApp.Service;
 
 namespace TimeApp.Controllers
 {
-    
-    [Route("api/[controller]")]
+
+    [Route("api/user")]
     [ApiController]
-   // [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -23,7 +22,7 @@ namespace TimeApp.Controllers
             _userService = userService;
         }
 
-        [HttpPost("AddUser")]
+        [HttpPost]
         public async Task<IActionResult> AddUser(UserWithoutIdVM userVM)
         {
             var result = await _userService.AddUser(userVM);
@@ -32,7 +31,7 @@ namespace TimeApp.Controllers
             return Ok("User was added");
         }
 
-        [HttpPatch("PatchUser")]
+        [HttpPatch("patchUser")]
         public async Task<IActionResult> PatchUser(int userId, UserWithoutIdVM userWithoutIdVM)
         {
             var result = await _userService.PatchUser(userId, userWithoutIdVM);
@@ -41,21 +40,22 @@ namespace TimeApp.Controllers
             return Ok("User was patched");
         }
 
-        [HttpGet("GetAllUsers")]
+        [HttpPatch("deactivateUser")]
+        public async Task<IActionResult> DeactivateUser(int userId, bool activeStatus)
+        {
+            var result = await _userService.DeactivateUser(userId, activeStatus);
+            if (result.Response != null)
+                return BadRequest(result);
+            return Ok("User active status was patched");
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
             var userList = await _userService.GetAllUsers();
             if (userList == null)
                 return BadRequest("No users to show");
             return Ok(userList);
-        }
-        [HttpPatch("PatchActiveStatus")]
-        public async Task<IActionResult> PatchActiveStatus(int userId, bool activeStatus)
-        {
-            var result = await _userService.PatchActiveStatus(userId, activeStatus);
-            if (result.Response != null)
-                return BadRequest(result);
-            return Ok("User active status was patched");
-        }
+        } 
     }
 }
